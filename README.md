@@ -1,7 +1,24 @@
-example usage:
+# What?
+This is a simply script to return a list of IPs for ansible tasks.
 
+# Why?
+Because sometimes I want easy inventory that is less clunky than ec2.py
+
+# How?
+This script takes 2 optional positional args.
+
+`AWS_PROFILE` is profile configured in `~/.aws/credentials`
+
+`INSTANCE_TAG_NAME` is the instance name you want to get PRIVATE ip of.
+
+Below example will use the `test` profile and return private IP addresses of instances named `web`.
 ```
-ansible -u giddy -i "$(python main.py)" all -m shell -a "uptime" -vv
+python ip-by-tags.py test web
+```
+
+example usage:
+```
+ansible -u giddy -i "$(python ip-by-tags.py test web)" all -m shell -a "uptime" -vv
 META: ran handlers
 10.10.10.14 | SUCCESS | rc=0 >>
  17:31:14 up  2:07,  1 user,  load average: 0.22, 0.19, 0.21
